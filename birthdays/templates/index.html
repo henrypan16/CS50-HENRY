@@ -1,4 +1,5 @@
-<!DOCTYPE html>
+{% extends "layout.html" %}
+{% block body %}
 
 <html lang="en">
     <head>
@@ -17,8 +18,8 @@
                 <!-- TODO: Create a form for users to submit a name, a month, and a day -->
                 <form action="/" method="post">
                     <input type="text" name="name" required placeholder="Name">
-                    <input type="number" name="month" required placeholder="Month">
-                    <input type="number" name="day" required placeholder="Day">
+                    <input type="text" name="month" pattern="^(1[012]|[1-9])$" required title="Please enter the correct month" placeholder="Month">
+                    <input type="text" name="day" pattern="^(3[01]|2[1-9]|1[1-9]|[1-9])$" title="Please enter the correct day" required placeholder="Day">
                     <button type="submit">Add Birthday</button>
                 </form>
             </div>
@@ -47,3 +48,4 @@
         </div>
     </body>
 </html>
+{% endblock %}

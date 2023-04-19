@@ -8,6 +8,8 @@ app = Flask(__name__)
 
 # Ensure templates are auto-reloaded
 app.config["TEMPLATES_AUTO_RELOAD"] = True
+app.secret_key = 'super secret key'
+app.config['SESSION_TYPE'] = 'filesystem'
 
 # Configure CS50 Library to use SQLite database
 db = SQL("sqlite:///birthdays.db")
@@ -26,10 +28,15 @@ def after_request(response):
 def index():
     if request.method == "POST":
         # TODO: Add the user's entry into the database
+        
         name = request.form["name"]
-        month = request.form["month"]
-        day = request.form["day"]
-        db.execute("INSERT INTO Birthdays (name, month, day) VALUES(?, ?, ?)", name, month, day)
+        birthdays = db.execute("SELECT * FROM Birthdays WHERE name=?", name)
+        if birthdays:
+            flash("Name already exist")
+        else:
+            month = request.form["month"]
+            day = request.form["day"]
+            db.execute("INSERT INTO Birthdays (name, month, day) VALUES(?, ?, ?)", name, month, day)
         return redirect("/")
     else:
 
