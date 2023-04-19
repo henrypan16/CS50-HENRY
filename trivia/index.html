@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+
+<html lang="en">
+    <head>
+        <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@500&display=swap" rel="stylesheet">
+        <link href="styles.css" rel="stylesheet">
+        <title>Trivia!</title>
+        <script>
+            // TODO: Add code to check answers to questions
+            function checkAns1(elt) {
+                buttons = document.querySelectorAll("button")
+                buttons.forEach(button => button.setAttribute("style", ""))
+                if(elt.id == 3) {
+                    elt.setAttribute("style", "background-color: green; color:white")
+                    document.querySelector("#result1").innerHTML = "Correct"
+                }
+                else {
+                    elt.setAttribute("style", "background-color: red; color:white")
+                    document.querySelector("#result1").innerHTML = "Incorrect"
+                }
+            }
+
+            function checkAns2(elt) {
+                value = document.querySelector("#ans2").value;
+                if(value == "Toronto" || value == "toronto") {
+                    document.querySelector("#ans2").setAttribute("style", "background-color: green; color:white")
+                    document.querySelector("#result2").innerHTML = "Correct"
+                }
+                else {
+                    document.querySelector("#ans2").setAttribute("style", "background-color: red; color:white")
+                    document.querySelector("#result2").innerHTML = "Incorrect"
+                }
+            }
+        </script>
+    </head>
+    <body>
+        <div class="header">
+            <h1>Trivia!</h1>
+        </div>
+
+        <div class="container">
+            <div class="section">
+                <h2>Part 1: Multiple Choice </h2>
+                <hr>
+                <!-- TODO: Add multiple choice question here -->
+                <h3>Which city is the capital of Canada?</h3>
+                <p id="result1"></p>
+                <button onclick="checkAns1(this)" id="1">Toronto</button>
+                <button onclick="checkAns1(this)" id="2">Windsor</button>
+                <button onclick="checkAns1(this)" id="3">Ottawa</button>
+                <button onclick="checkAns1(this)" id="4">Montreal</button>
+            </div>
+
+            <div class="section">
+                <h2>Part 2: Free Response</h2>
+                <hr>
+                <!-- TODO: Add free response question here -->
+                <h3>Which city is the capital of Ontario?</h3>
+                <p id="result2"></p>
+                <input id="ans2"></input>
+                <button onclick="checkAns2()">Submit</button>
+            </div>
+        </div>
+    </body>
+</html>
